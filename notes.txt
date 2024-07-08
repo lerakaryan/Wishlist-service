@@ -1,0 +1,38 @@
+Практика
+
+Предметная область:
+Веб-сайт с возможностью создавать карточки с желаниями
+
+Функционал: 
+- Возможность добавить желание
+- Сортировка 
+
+База данных:
+
+- User
+user_id GENER PK
+username text
+
+- Wish 
+wish_id GENER PK
+author_id FK
+board_id FK
+url text
+name text 
+description text
+price PRICE
+image text
+priority int 
+
+- User_wish
+user_id PK fk
+wish_id PK fk
+
+- Board
+board_id GENER PK
+board_name text
+user_id 
+event_date DATE NULL //дата события
+
+желание из бд может удалить только author, другой пользователь может удалить его только из своего списка
+создать бд с картинками, соответствующими названиям вишей (предлагать их) 

@@ -1,0 +1,133 @@
+databaseChangeLog:
+  - changeSet:
+      author: lera
+      id: '1'
+      comment: 'DB creating'
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(30)
+                  constraints:
+                    unique: true
+                    nullable: false
+
+        - createTable:
+            tableName: board
+            columns:
+              - column:
+                  name: board_id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: board_name
+                  type: varchar(30)
+                  defaultValue: My board
+                  constraints:
+                    nullable: false
+              - column:
+                  name: event_date
+                  type: date
+                  constraints:
+                    nullable: true
+              - column:
+                  name: author_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: board
+            baseColumnNames: author_id
+            constraintName: user_board_FK
+            referencedTableName: user
+            referencedColumnNames: user_id
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            validate: true
+
+        - createTable:
+            tableName: wish
+            columns:
+              - column:
+                  name: wish_id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: link
+                  type: varchar (2048)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: wish_name
+                  type: varchar (100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar (500)
+              - column:
+                  name: price
+                  type: int
+              - column:
+                  name: author_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: wish
+            baseColumnNames: author_id
+            constraintName: wishes_author_FK
+            referencedTableName: user
+            referencedColumnNames: user_id
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            validate: true
+
+        - createTable:
+            tableName: users_wishes
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: wish_id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: users_wishes
+            baseColumnNames: user_id
+            constraintName: users_wishes_user_FK
+            referencedTableName: user
+            referencedColumnNames: user_id
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            validate: true
+        - addForeignKeyConstraint:
+            baseTableName: users_wishes
+            baseColumnNames: wish_id
+            constraintName: users_wishes_wish_FK
+            referencedTableName: wish
+            referencedColumnNames: wish_id
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            validate: true
