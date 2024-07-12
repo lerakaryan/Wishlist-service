@@ -131,3 +131,71 @@ databaseChangeLog:
             onDelete: CASCADE
             onUpdate: RESTRICT
             validate: true
+  - changeSet:
+      author: lera
+      id: '2'
+      comment: 'убираю автора из wish, добавляю в отношение users_wishes состояние автора'
+      changes:
+        - dropColumn:
+            tableName: wish
+            columns:
+              - column:
+                  name: author_id
+
+        - addColumn:
+            tableName: users_wishes
+            columns:
+              - column:
+                  name: is_author
+                  type: boolean
+                  defaultValue: true
+                  constraints:
+                    nullable: false
+  - changeSet:
+      author: lera
+      id: '3'
+      comment: 'rename user -> users'
+      changes:
+        - renameTable:
+            oldTableName: user
+            newTableName: users
+  - changeSet:
+      author: Lera
+      id: '4'
+      comment: 'renaming'
+      changes:
+        - renameColumn:
+            tableName: users_wishes
+            oldColumnName: user_id
+            newColumnName: users_user_id
+        - dropColumn:
+            tableName: users_wishes
+            columnName: is_author
+  - changeSet:
+      author: Lera
+      id: '5'
+      comment: 'renaming'
+      changes:
+        - renameColumn:
+            tableName: users_wishes
+            oldColumnName: wish_id
+            newColumnName: wishes_wish_id
+
+  - changeSet:
+      author: Lera
+      id: '6'
+      comment: 'изменила тип данных'
+      changes:
+        - modifyDataType:
+            tableName: wish
+            columnName: wish_id
+            newDataType: bigint
+  - changeSet:
+      author: Lera
+      id: '7'
+      comment: 'изменила тип данных'
+      changes:
+        - modifyDataType:
+            tableName: users_wishes
+            columnName: wishes_wish_id
+            newDataType: bigint

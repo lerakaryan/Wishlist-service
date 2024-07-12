@@ -15,14 +15,14 @@ username text
 
 - Wish 
 wish_id GENER PK
-author_id FK
-board_id FK
-url text
+link text
 name text 
 description text
-price PRICE
-image text
+//! price PRICE
+// image text
 priority int 
+author_id FK
+board_id FK
 
 - User_wish
 user_id PK fk
