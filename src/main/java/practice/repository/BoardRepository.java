@@ -1,6 +1,6 @@
-package Practice.Repository;
+package practice.repository;
 
-import Practice.Model.Board;
+import practice.model.Board;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

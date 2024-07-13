@@ -1,6 +1,6 @@
-package Practice.Repository;
+package practice.repository;
 
-import Practice.Model.Wish;
+import practice.model.Wish;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package Practice.Controller;
+package practice.controller;
 
 public class AccountController {
 

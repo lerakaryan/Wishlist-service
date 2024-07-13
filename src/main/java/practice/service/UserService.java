@@ -1,7 +1,7 @@
-package Practice.Service;
+package practice.service;
 
-import Practice.Model.User;
-import Practice.Repository.UserRepository;
+import practice.model.*;
+import practice.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    User getById(Long id) {
+    public User getById(Long id) {
         log.info("in UserService getById {}", id);
         Optional<User> u = userRepository.findById(id);
         return (User) u.get();

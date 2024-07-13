@@ -1,4 +1,4 @@
-package Practice.Model;
+package practice.model;
 
 import lombok.*;
 
